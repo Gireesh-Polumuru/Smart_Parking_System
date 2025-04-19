@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  background-color: #00ccff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.slot {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  line-height: 60px;
+  color: white;
+  background-color: green;
+}
+
+.slot.booked {
+  background-color: blue;
+}
+
+.slot.confirmed {
+  background-color: red;
+}

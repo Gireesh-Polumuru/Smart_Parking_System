@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Parking Slot Booking</title>
+  <link rel="stylesheet" href="parking.css" />
+</head>
+<body>
+  <h2>Parking Slot Booking</h2>
+
+  <form id="bookingForm">
+    <input type="text" id="slotNumber" placeholder="Slot Number (C001/B001)" required />
+    <input type="text" id="vehicleNumber" placeholder="Vehicle Number" required />
+    <button type="submit">Book Slot</button>
+  </form>
+
+  <div id="qrContainer" style="margin: 20px auto; text-align: center;"></div>
+
+  <h3>Car Slots</h3>
+  <div class="slot-grid" id="carSlotGrid"></div>
+
+  <h3>Bike Slots</h3>
+  <div class="slot-grid" id="bikeSlotGrid"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="parking.js"></script>
+</body>
+</html>

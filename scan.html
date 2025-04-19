@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Entry/Exit</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding-top: 60px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .entry {
+      background-color: red;
+      color: white;
+    }
+
+    .exit {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2>Confirm Entry / Exit</h2>
+  <p id="slotInfo"></p>
+  <button class="entry" id="entryBtn">Confirm Entry</button>
+  <button class="exit" id="exitBtn">Confirm Exit</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slot = params.get("slot");
+    const vehicle = params.get("vehicle");
+
+    document.getElementById("slotInfo").innerText = `Slot: ${slot} | Vehicle: ${vehicle}`;
+
+    async function updateStatus(endpoint, actionLabel) {
+      try {
+        const res = await fetch(`/parking/${endpoint}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ slot })
+        });
+        const data = await res.json();
+        alert(data.message || `${actionLabel} confirmed`);
+
+        // ✅ Refresh opener tab if parking page is open
+        if (window.opener && !window.opener.closed) {
+          window.opener.location.reload();
+        }
+      } catch (err) {
+        alert(`Error: ${actionLabel} failed`);
+      }
+    }
+
+    document.getElementById("entryBtn").onclick = () => updateStatus("entry", "Entry");
+    document.getElementById("exitBtn").onclick = () => updateStatus("exit", "Exit");
+  </script>
+</body>
+</html>
